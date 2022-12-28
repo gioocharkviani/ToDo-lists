@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <link rel="stylesheet" href="./style.css"> 
+</head>
+<body>
+
+    <div class="boxWrapper">
+
+        <div class="mainContainer">
+
+            
+            <header>
+                <h1>#todo</h1>
+                
+                <nav class="navBar">
+                    <ul>
+                        <li><a href="./index.html" ><span class="navtrigger">All</span></a></li>
+                        <li><a href="./active.html" ><span class="navtrigger activeSpan">Active</span></a></li>
+                        <li><a href="./complite.html" ><span class="navtrigger">Complited</span></a></li>
+                    </ul>
+                </nav>
+
+            </header>
+
+            <section class="ActiveSection">
+
+                <form class="Form1" id="Form1">
+                <input id="addComponentInput" type="text" placeholder="Add details" required>
+                <button id="AddButton">Add</button>        
+                </form>
+            
+                    <div class="contentBox"></div>
+
+            </section>
+        
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
