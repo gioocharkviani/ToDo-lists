@@ -1,7 +1,18 @@
+const Allnav = document.getElementsByClassName("Allnav");
+const ActiveNav = document.getElementsByClassName("ActiveNav");
+const ComplitedNav = document.getElementsByClassName("ComplitedNav");
+
+
+
 const form1 = document.querySelector("#Form1");
 const contentBox = document.querySelector(".contentBox");
 
 let Elemets = [];
+
+
+
+
+
 
 
 
@@ -38,11 +49,18 @@ form1.addEventListener("submit" , (event) => {
     Elemets.push(addedalemets);
     localStorage.setItem("Elements", JSON.stringify(Elemets));
 
-    
 
-    
+    const taskStorage = JSON.parse(localStorage.getItem("Elemets"));
+if(taskStorage){
+    Elemets = taskStorage
+    Elemets.forEach(element => {
+        contentBox;
+    });
+}
+
 
 }); 
+
 
 
 
