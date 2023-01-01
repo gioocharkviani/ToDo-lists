@@ -1,78 +1,120 @@
-const Allnav = document.getElementsByClassName("Allnav");
-const ActiveNav = document.getElementsByClassName("ActiveNav");
-const ComplitedNav = document.getElementsByClassName("ComplitedNav");
+//select elements
+let AddTask = document.getElementById('AddForm');
+let Addinput = document.getElementById('addComponentInput');
+let contebtboxList = document.getElementById('contebtbox'); 
+let activecontent = document.getElementById('activecontent'); 
 
+let navmenuall = document.getElementById('navmenu1'); 
+let navmenuactive = document.getElementById('navmenu2'); 
+let navmenucomplite = document.getElementById('navmenu3'); 
 
+let TasksWrapper = JSON.parse(localStorage.getItem('tasks')) || [];
 
-const form1 = document.querySelector("#Form1");
-const contentBox = document.querySelector(".contentBox");
+renderInHtml();
 
-let Elemets = [];
-
-
-
-
-
-
-
-
-
-form1.addEventListener("submit" , (event) => {
+//form => Submit
+AddTask.addEventListener('submit', function(event){
     event.preventDefault();
+    saveTask();
+    renderInHtml();
+    localStorage.setItem('tasks', JSON.stringify(TasksWrapper));
+});
 
-    const addedalemets = event.target[0].value;
+//save Tasks 
+function saveTask() {
+    const taskvalue = Addinput.value
 
-    const liCreator = document.createElement("li");
-    liCreator.setAttribute("class" , "checkbox");
+    //if input is empty 
+const isempty = taskvalue === '';
 
-    const inputCreator = document.createElement("input");
-    inputCreator.setAttribute("type" , "checkbox");
+//if task is duplicate in arrey
+const duplicate = 
+TasksWrapper.some((task) => task.value.toUpperCase() === taskvalue.toUpperCase());
 
-    
-    let randomId = Math.floor(Math.random() * 1000000);
-    inputCreator.setAttribute("id" , randomId);
-
-
-    inputCreator.setAttribute("onclick" , "checkfuncion()");
-
-    const labelCreator = document.createElement("label");
-    labelCreator.setAttribute("for" , randomId);
-
-    
-    liCreator.appendChild(inputCreator);
-    liCreator.appendChild(labelCreator);
-
-    labelCreator.innerHTML = addedalemets;
-
-    contentBox.appendChild(liCreator);
-
-    Elemets.push(addedalemets);
-    localStorage.setItem("Elements", JSON.stringify(Elemets));
-
-
-    const taskStorage = JSON.parse(localStorage.getItem("Elemets"));
-if(taskStorage){
-    Elemets = taskStorage
-    Elemets.forEach(element => {
-        contentBox;
+if(isempty){
+    alert('Task input is empty');
+}else if(duplicate){
+    alert('A similar task already exists')
+}
+else{
+    TasksWrapper.push({
+        value:taskvalue,
+        Chacked: false , 
     });
+    Addinput.value = '';
+}
+}
+
+//render in Html Tasks
+function renderInHtml(){
+    //CLEAR TASK BEFORE RENDER
+    contebtboxList.innerHTML = ``;
+    //RENDER
+    TasksWrapper.forEach((task , index) => {
+    contebtboxList.innerHTML += `
+        <div class="task" id="${index}" data-action="check">
+            <i class="bi ${task.Chacked ? 'bi-check-circle' : 'bi-circle' }"
+            data-action="check"
+            ></i>
+            <p class="${task.Chacked ? 'ChackedValue' : '' }" data-action="check" >${task.value}</p>
+        <i class="bi bi-trash" data-action="remove" ></i>
+        </div>
+        `
+
+    })
 }
 
 
-}); 
+//click for all elements
+contebtboxList.addEventListener('click', (event) => {
+    const target = event.target;
+    const ParentElement = target.parentNode;
+
+    if(ParentElement.className !== 'task') return;
+
+//Task id
+    const task = ParentElement;
+    const taskId = Number(task.id);
+
+//A C T I O N
+    const actions = target.dataset.action;
+
+    actions === "check" && checktask(taskId)
+    actions === "remove" && removetask(taskId)
+
+})
+
+//CHECK FUNCTION
+function checktask(taskId){
+    TasksWrapper = TasksWrapper.map((task , index) =>({
+            ...task ,
+            Chacked: index === taskId ? !task.Chacked : task.Chacked,
+        })
+    )
+    renderInHtml();
+    localStorage.setItem('tasks', JSON.stringify(TasksWrapper));
+
+}
+
+// REMOVE TASK
+function removetask(taskId){
+    TasksWrapper = TasksWrapper.filter((task , index) => index , taskId);
+
+    renderInHtml();
+    localStorage.setItem('tasks', JSON.stringify(TasksWrapper));
+}
 
 
-
-
-// function checkfuncion() {
-//   var checkBox = document.getElementById(randomId);
-//   var text = document.getElementById("text");
-//   if (checkBox.checked == true){
-//     text.style.display = "block";
-//   } else {
-//      text.style.display = "none";
-//   }
-// }
-
-
-// console.log(checkfuncion());
+//change pages
+navmenuall.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.assign('index.html');
+})
+navmenuactive.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.assign('active.html');
+})
+navmenucomplite.addEventListener('click', (e) =>  {
+    e.preventDefault();
+    window.location.assign('complite.html');
+})

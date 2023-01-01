@@ -72,14 +72,14 @@ header h1 {
 
 
 
-.Form1 {
+#AddForm {
     margin-top: 10px;
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.Form1 button {
+#AddForm button {
     padding: 15px 30px 15px;
     cursor: pointer;
     border: none;
@@ -89,11 +89,11 @@ header h1 {
     border-radius: 5px;
 }
 
-.Form1 button:hover {
+#AddForm button:hover {
     background-color: rgb(0, 89, 153);
 }
 
-.Form1 input {
+#AddForm input {
    padding:0 20px ; 
    border: 1px solid rgb(188, 188, 188);
    border-radius: 5px;
@@ -103,27 +103,61 @@ header h1 {
    cursor: text;
 }
 
-.Form1 input:focus {
+#AddForm input:focus {
     border: 1px solid rgb(0, 131, 225);
 }
 
 .contentBox {
     margin-top: 10px;
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 
-.contentBox li {
-    list-style: none;
+
+.task {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    border-radius: 3px;
+    padding: 5px 5px;
+    transition: 0.1s;
+}
+
+.task:hover {
+    background-color: rgb(214, 214, 214);
+}
+
+.task p {
+    cursor:pointer;
+    transition: 0.2s;
+}
+
+.task p:hover {
+    color: rgb(172, 172, 172);
+}
+
+.task i {
+    cursor:pointer;
+}
+
+.task i:hover {
+    color: rgb(172, 172, 172);
+}
+
+.ChackedValue {
+    text-decoration:line-through;
 }
 
 
-/*------------ CheckboX custom style----------------- */
-
-.checkbox label {
-    padding: 0 0 0 10px;
+#clearAll {
+    padding: 6px 16px;
+    border-radius: 4px;
+    border: none;
+    background: red;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
 }
-
-/*------------ CheckboX custom style----------------- */
 

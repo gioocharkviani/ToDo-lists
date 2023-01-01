@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo</title>
     <link rel="stylesheet" href="./style.css"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body>
 
@@ -13,44 +14,37 @@
 
         <div class="mainContainer">
 
-            
             <header>
                 <h1>#todo</h1>
                 
                 <nav class="navBar">
                     <ul>
-                        <li><span class="Allnav activeSpan">All</span></a></li>
-                        <li><span class="ActiveNav">Active</span></a></li></li>
-                        <li><span class="ComplitedNav">Complited</span></a></li>
+                        <li id="navmenu1" ><span class="activeSpan">All</span></a></li>
+                        <li id="navmenu2" ><span  class="">Active</span></a></li></li>
+                        <li id="navmenu3"><span class="">Complited</span></a></li>
                     </ul>
                 </nav>
 
             </header>
 
-            <section class="AllSection active">
+            <section>
 
-                <form class="Form1" id="Form1">
-                <input id="addComponentInput" type="text" placeholder="Add details" required>
+                <form id="AddForm">
+                <input id="addComponentInput" type="text" placeholder="Add details">
                 <button id="AddButton">Add</button>        
                 </form>
             
                     <div class="contentBox" id="contebtbox">
 
-                   
+                        <!-- <div class="task">
+                                <i class="bi bi-check-circle"></i>
+                                <i class="bi bi-circle"></i>
+                                <p class="task-value">adsadsa</p>
+                                <i class="bi bi-trash"></i>
+                        </div> -->
 
                     </div>
 
-            </section>
-        
-
-            <section class="activeSection" >
-                asdsadsa
-            </section>
-
-
-
-            <section class="compliteSection" >
-                asdsadsa
             </section>
 
 
